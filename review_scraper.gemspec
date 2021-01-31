@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = "This web scraper searches for \"good\" dealership's reviews on DealerRater.com for the Committee for State Security."
   spec.homepage      = "https://github.com/lucasfernand-es/Review-Scraper"
   spec.license       = "MIT"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.7")
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 

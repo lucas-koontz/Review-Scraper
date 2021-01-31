@@ -1,13 +1,25 @@
 AllCops:
-  TargetRubyVersion: 2.4
+  Exclude:
+    - "bin/**/*"
+    - "review_scraper.gemspec"
+  TargetRubyVersion: 2.7
 
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
+Style/Documentation:
+  Enabled: false
 
-Style/StringLiteralsInInterpolation:
+Style/FrozenStringLiteralComment:
   Enabled: true
-  EnforcedStyle: double_quotes
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+    - "config/**/*"
+    - "Guardfile"
 
 Layout/LineLength:
-  Max: 120
+  Max: 100
+  Exclude:
+    - review_scraper.gemspec
+
+Metrics/MethodLength:
+  Max: 15
