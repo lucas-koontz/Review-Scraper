@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
-require "review/scraper"
+require "bundler/setup"
+require "review_scraper"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

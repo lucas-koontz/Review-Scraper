@@ -1,0 +1,9 @@
+version: "3.2"
+services:
+  review-scraper:
+    build:
+      context: .
+    image: review-scraper
+    volumes:
+      - "/usr/local/bundle"
+      - ".:/gem"
