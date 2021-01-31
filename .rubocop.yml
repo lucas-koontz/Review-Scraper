@@ -1,0 +1,25 @@
+AllCops:
+  Exclude:
+    - "bin/**/*"
+    - "review_scraper.gemspec"
+  TargetRubyVersion: 2.7
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+    - "config/**/*"
+    - "Guardfile"
+
+Layout/LineLength:
+  Max: 100
+  Exclude:
+    - review_scraper.gemspec
+
+Metrics/MethodLength:
+  Max: 15
