@@ -28,4 +28,7 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
+
+  spec.add_dependency 'mechanize', '>= 2.7.6'
+  spec.add_dependency 'nokogiri', '>= 1.11.1'
 end
