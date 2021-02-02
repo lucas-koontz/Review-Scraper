@@ -39,11 +39,11 @@ gem 'review_scraper'
 
 And then execute:
 
-    $ bundle install
+    `$ bundle install`
 
 Or install it yourself as:
 
-    $ gem install review_scraper
+    `$ gem install review_scraper`
 
 ## How to Run
 
@@ -51,10 +51,10 @@ There's several ways to run this project:
 
 1. As an installed gem in a project (described above).
 1. Run directly in your console after downloading this project.
-   - $ bundle install
-   - $ bin/console
+   - `$ bundle install`
+   - `$ bin/console`
 1. As a docker container:
-   - $ docker-compose run review-scraper bin/console
+   - `$ docker-compose run review-scraper bin/console`
 
 
 ## Usage
