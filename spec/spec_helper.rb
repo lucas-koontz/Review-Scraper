@@ -2,6 +2,10 @@
 
 require 'bundler/setup'
 require 'review_scraper'
+require 'pry-byebug'
+require 'webmock/rspec'
+
+# Dir['./spec/**/**/*.rb'].sort.each { |f| require f }
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

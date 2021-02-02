@@ -2,10 +2,6 @@
 
 RSpec.describe ReviewScraper do
   it 'has a version number' do
-    expect(ReviewScraper::VERSION).not_to be nil
-  end
-
-  it 'does something useful' do
-    expect(true).to eq(true)
+    expect(ReviewScraper::VERSION).to be_truthy
   end
 end
