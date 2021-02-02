@@ -76,22 +76,41 @@ RSpec.describe ReviewScraper::DealerRater::Client do
       assert_not_requested(stub_after_last_page)
     end
 
-    context 'when an error occur while scraping a dealership\'s reviews page' do
-      it 'should raise an error when trying to scrape a page with an index lower than 1' do
-        expect do
-          subject.scrape_range(start_page: 0, stop_page: 200)
-        end.to raise_error(ReviewScraper::InvalidPageRange)
-      end
 
-      it 'should raise an error when trying to scrape a page with an stop page index lower'\
-                                                                   ' than start page index' do
-        expect do
-          subject.scrape_range(start_page: 3, stop_page: 2)
-        end.to raise_error(ReviewScraper::InvalidPageRange)
-      end
+    it 'should scrape all reviews' do
+      start_page = 1
+      stop_page = 10
+
+      mock_review_page_range(start_page: start_page, stop_page: stop_page)
+
+      stub_last_page = mock_review_last_page(last_page: stop_page)
+      stub_after_last_page = mock_review_page(page_number: stop_page + 1)
+
+      response = subject.scrape_all
+
+      expect(response).to be_a(Array)
+      expect(response).to all(be_a(ReviewScraper::DealerRater::Review))
+
+      assert_requested(stub_last_page)
+      assert_not_requested(stub_after_last_page)
     end
+
   end
 
+  context 'when an error occur while scraping a dealership\'s reviews page' do
+    it 'should raise an error when trying to scrape a page with an index lower than 1' do
+      expect do
+        subject.scrape_range(start_page: 0, stop_page: 200)
+      end.to raise_error(ReviewScraper::InvalidPageRange)
+    end
+
+    it 'should raise an error when trying to scrape a page with an stop page index lower'\
+                                                                 ' than start page index' do
+      expect do
+        subject.scrape_range(start_page: 3, stop_page: 2)
+      end.to raise_error(ReviewScraper::InvalidPageRange)
+    end
+  end
   ### Helper stubs
 
   def stub_page(url:, fixture:)

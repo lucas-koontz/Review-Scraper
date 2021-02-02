@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# require 'mechanize'
-
 module ReviewScraper
   module DealerRater
     class Client
@@ -11,6 +9,10 @@ module ReviewScraper
 
       def scrape_first
         scrape_range(stop_page: 1)
+      end
+
+      def scrape_all
+        scrape_range(start_page: 1, stop_page: Float::INFINITY)
       end
 
       def scrape_range(stop_page:, start_page: 1)
@@ -30,7 +32,7 @@ module ReviewScraper
 
           reviews << fetch_reviews(page: page)
 
-          break if last_review_page?(page: page)
+          break if last_review_page?(page: page) # Stop Condition
         end
 
         reviews.flatten
