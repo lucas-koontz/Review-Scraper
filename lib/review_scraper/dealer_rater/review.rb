@@ -18,6 +18,14 @@ module ReviewScraper
         @rating ||= extract_rating_from_element(element)
       end
 
+      def score
+        @score ||= SentimentAnalyser.call(text: content, modifier: rating)
+      end
+
+      def to_s
+        "Content: #{content} -- Rating: #{rating} -- Score: #{score}"
+      end
+
       private
 
       attr_reader :raw_element
