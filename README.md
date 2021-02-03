@@ -1,6 +1,6 @@
 # ReviewScraper
 
-[![Actions Status](https://github.com/lucasfernand-es/Review-Scraper/workflows/build/badge.svg)](https://github.com/lucasfernand-es/Review-Scraper/actions)
+[![Actions Status](https://github.com/lucasfernand-es/Review-Scraper/workflows/Ruby/badge.svg)](https://github.com/lucasfernand-es/Review-Scraper/actions)
 
 This web scraper searches for "good" dealership's reviews on DealerRater.com for the Committee for State Security.
 
