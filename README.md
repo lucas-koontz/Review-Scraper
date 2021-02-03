@@ -1,6 +1,6 @@
 # ReviewScraper
 
--- Status TODO --
+[![Actions Status](https://github.com/lucasfernand-es/Review-Scraper/workflows/build/badge.svg)](https://github.com/lucasfernand-es/Review-Scraper/actions)
 
 This web scraper searches for "good" dealership's reviews on DealerRater.com for the Committee for State Security.
 
@@ -118,7 +118,9 @@ We are encapsulating in this service so any other analysis tool can be easily im
 `text` is analyzed by each word and not the sentence. So at this time, complex sentences (e.g. containing sarcasm) might be misinterpreted.
 
 A review score is determined as follows:
-`score = <review sentiment score> * rating`
+```ruby
+score = <review sentiment score> * rating
+```
 
 The overall sentiment of a review is given by a set threshold:
 
