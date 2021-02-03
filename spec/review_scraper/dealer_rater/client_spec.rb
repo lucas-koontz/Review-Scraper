@@ -5,7 +5,7 @@ require 'review_scraper'
 RSpec.describe ReviewScraper::DealerRater::Client do
   let(:url) { nil }
 
-  subject { ReviewScraper::DealerRater::Client.new(url: url) }
+  subject { described_class.new(url: url) }
 
   let(:reviews_per_page) { 10 }
   let(:reviews_stop_page) { 3 }
@@ -76,7 +76,6 @@ RSpec.describe ReviewScraper::DealerRater::Client do
       assert_not_requested(stub_after_last_page)
     end
 
-
     it 'should scrape all reviews' do
       start_page = 1
       stop_page = 10
@@ -94,7 +93,6 @@ RSpec.describe ReviewScraper::DealerRater::Client do
       assert_requested(stub_last_page)
       assert_not_requested(stub_after_last_page)
     end
-
   end
 
   context 'when an error occur while scraping a dealership\'s reviews page' do
