@@ -3,9 +3,7 @@
 module ReviewScraper
   module DealerRater
     class Review
-      attr_reader :raw_element
-
-      # <= Nokogiri::XML::Element
+      # Nokogiri::XML::Element
       def initialize(raw_element)
         @raw_element = raw_element
       end
@@ -20,7 +18,17 @@ module ReviewScraper
         @rating ||= extract_rating_from_element(element)
       end
 
+      def score
+        @score ||= SentimentAnalyser.call(text: content, modifier: rating)
+      end
+
+      def to_s
+        "Content: #{content} -- Rating: #{rating} -- Score: #{score}"
+      end
+
       private
+
+      attr_reader :raw_element
 
       def extract_rating_from_element(element)
         classes = element.at('div[class^="rating-"]').values.first

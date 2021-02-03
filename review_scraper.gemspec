@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'mechanize', '>= 2.7.6'
   spec.add_dependency 'nokogiri', '>= 1.11.1'
+  spec.add_dependency 'sentimental', '>= 1.5.0'
 end

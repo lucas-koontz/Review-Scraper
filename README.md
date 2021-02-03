@@ -1,6 +1,6 @@
 # ReviewScraper
 
--- Status TODO --
+[![Actions Status](https://github.com/lucasfernand-es/Review-Scraper/workflows/Ruby/badge.svg)](https://github.com/lucasfernand-es/Review-Scraper/actions)
 
 This web scraper searches for "good" dealership's reviews on DealerRater.com for the Committee for State Security.
 
@@ -85,6 +85,11 @@ Scrape a range of pages. `start_page` default value is 1.
 dealer_scraper.scrape_range(start_page: <Integer>, stop_page: <Integer>) # <= returns an array of ReviewScraper::DealerRater::Review
 ```
 
+Scrape all pages. 
+```ruby
+dealer_scraper.scrape_all # <= returns an array of ReviewScraper::DealerRater::Review
+```
+
 
 ## Examples
 
@@ -96,23 +101,44 @@ dealer_scraper = ReviewScraper::DealerRater::Client.new(url: dealer_url)
 ```
 
 
-
 ## Test
 
 $ rspec
 
 ## Score System for **DealerRater.com**
 
-All information used into this scoring system was extract from online review pages. After analysing DealerRater's html it was possible to detect how their website is formatted.
+Reviews content are analysed in  `ReviewScraper::SentimentAnalyser` which uses [Sentimental](https://github.com/7compass/sentimental) to verify how positive a endorsement is.
 
-This is an MVP, thus this tool only analyses a review's message  and the average given by a customer.
+We are encapsulating in this service so any other analysis tool can be easily implemented in the future.
+
+`ReviewScraper::SentimentAnalyser` is a service that receives a `text` and a `modifier` and returns a score. For DealerRater:
+- `text`: content of a review.
+- `modifier`: average rating given by a customer.
+
+`text` is analyzed by each word and not the sentence. So at this time, complex sentences (e.g. containing sarcasm) might be misinterpreted.
+
+A review score is determined as follows:
+```ruby
+score = <review sentiment score> * rating
+```
+
+The overall sentiment of a review is given by a set threshold:
+
+- Positive scores are > 0.25
+- Neutral scores are <= 0.25 and >= -0.25
+- Negative scores are < -0.25
+
+Since we are only handling review from DealerRater.com, we did not worry about normalizing/standarizing our data.
+
+
+**NOTE**: All information used into this scoring system was extract from online review pages. After analysing DealerRater's html it was possible to detect how their website is formatted.
 
 
 ## How to extract information
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/lucasfernand-es/review_scraper. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/review_scraper/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/lucasfernand-es/review_scraper. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/lucasfernand-es/review_scraper/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
