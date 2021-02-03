@@ -119,7 +119,7 @@ RSpec.describe ReviewScraper::DealerRater::Client do
   end
 
   def mock_review_page_url(page_number:)
-    url_review + format('page%s', page_number)
+    url_review + "page#{page_number}"
   end
 
   def mock_review_page(page_number:)

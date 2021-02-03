@@ -21,4 +21,8 @@ RSpec.describe ReviewScraper::DealerRater::Review do
   it 'should extract the rating from a review' do
     expect(subject.rating).to eq(48)
   end
+
+  it 'should return a review score' do
+    expect(subject.score).to be_truthy
+  end
 end

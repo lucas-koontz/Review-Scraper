@@ -59,7 +59,7 @@ module ReviewScraper
       end
 
       def page_suffix(page_number: 1)
-        format('page%s', page_number)
+        "page#{page_number}"
       end
 
       def fetch_reviews(page:)
