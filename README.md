@@ -24,6 +24,8 @@ Your mission, should you choose to accept it, is to write a tool that:
     - [DealerRater](#dealerrater)
   - [Examples](#examples)
   - [Test](#test)
+  - [Score System for **DealerRater.com**](#score-system-for-dealerratercom)
+  - [How to extract information](#how-to-extract-information)
   - [Contributing](#contributing)
   - [License](#license)
   - [Code of Conduct](#code-of-conduct)
@@ -98,6 +100,15 @@ dealer_scraper = ReviewScraper::DealerRater::Client.new(url: dealer_url)
 ## Test
 
 $ rspec
+
+## Score System for **DealerRater.com**
+
+All information used into this scoring system was extract from online review pages. After analysing DealerRater's html it was possible to detect how their website is formatted.
+
+This is an MVP, thus this tool only analyses a review's message  and the average given by a customer.
+
+
+## How to extract information
 
 ## Contributing
 
