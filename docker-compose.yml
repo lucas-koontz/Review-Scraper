@@ -1,4 +1,4 @@
-version: "3.2"
+version: "3.7"
 services:
   review-scraper:
     build:
@@ -7,3 +7,11 @@ services:
     volumes:
       - "/usr/local/bundle"
       - ".:/gem"
+    networks:
+      - default
+
+
+networks:
+  default:
+    external:
+      name: local-network

@@ -1,23 +1,11 @@
 # ReviewScraper
 
-[![Actions Status](https://github.com/lucasfernand-es/Review-Scraper/workflows/Ruby/badge.svg)](https://github.com/lucasfernand-es/Review-Scraper/actions)
+[![Actions Status](https://github.com/lucasfernand-es/Review-Scraper/workflows/build/badge.svg)](https://github.com/lucasfernand-es/Review-Scraper/actions)
 
 This web scraper searches for "good" dealership's reviews on DealerRater.com for the Committee for State Security.
 
-## Scenario
-
-The KGB has noticed a resurgence of overly excited reviews for a McKaig Chevrolet Buick, a dealership they have planted in the United States. In order to avoid attracting unwanted attention, you’ve been enlisted to scrape reviews for this dealership from DealerRater.com and uncover the top three worst offenders of these overly positive endorsements.
-
-Your mission, should you choose to accept it, is to write a tool that:
-
-1. scrapes the first five pages of reviews
-2. identifies the top three most “overly positive” endorsements (using criteria of your choosing, documented in the README)
-3. outputs these three reviews to the console, in order of severity
-
 ## Table of Contents
-- [ReviewScraper](#reviewscraper)
   - [Scenario](#scenario)
-  - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [How to Run](#how-to-run)
   - [Usage](#usage)
@@ -30,6 +18,58 @@ Your mission, should you choose to accept it, is to write a tool that:
   - [License](#license)
   - [Code of Conduct](#code-of-conduct)
 
+
+## Scenario
+
+The KGB has noticed a resurgence of overly excited reviews for a McKaig Chevrolet Buick, a dealership they have planted in the United States. In order to avoid attracting unwanted attention, you’ve been enlisted to scrape reviews for this dealership from DealerRater.com and uncover the top three worst offenders of these overly positive endorsements.
+
+Your mission, should you choose to accept it, is to write a tool that:
+
+1. scrapes the first five pages of reviews
+2. identifies the top three most “overly positive” endorsements (using criteria of your choosing, documented in the README)
+3. outputs these three reviews to the console, in order of severity
+
+### Proposed solution
+
+It was develop an API to help the KGB identify "the top three worst offenders" called `ReviewScraper::DealerRater::Api::KgbTool`. All the agent need to do is run a function `print_top_three_offenders` to print these offenders comments in the console.
+
+```ruby
+ReviewScraper::DealerRater::Api::KgbTool.print_top_three_offenders
+=begin
+1.  Offense: '<content>'
+    Offense score: <score>
+    By <author>
+2.  Offense: '<content>'
+    Offense score: <score>
+    By <author>
+3.  Offense: '<content>'
+    Offense score: <score>
+    By <author>
+=> nil
+=end
+
+```
+
+#### Running without docker
+
+Make sure to have installed Ruby v2.7.2 in your console, then run:
+```bash
+$ bundle install
+$ bin/console
+```
+
+#### Running with docker
+
+```bash
+$ docker-compose run review-scraper bin/console
+```
+
+Once inside the `bin/console` run:
+```ruby
+ReviewScraper::DealerRater::Api::KgbTool.print_top_three_offenders
+```
+
+**NOTE**: In depth details about this application are described below.
 
 ## Installation
 
@@ -55,8 +95,12 @@ There's several ways to run this project:
 1. Run directly in your console after downloading this project.
    - `$ bundle install`
    - `$ bin/console`
-1. As a docker container:
+  
+2. As a [docker](https://www.docker.com/) container:
    - `$ docker-compose run review-scraper bin/console`
+
+
+ReviewScraper::DealerRater::Api::KgbTool.print_top_three_offenders
 
 
 ## Usage
@@ -100,10 +144,9 @@ dealer_url = "https://www.dealerrater.com/dealer/McKaig-Chevrolet-Buick-A-Dealer
 dealer_scraper = ReviewScraper::DealerRater::Client.new(url: dealer_url)
 ```
 
-
 ## Test
 
-$ rspec
+`$ rspec`
 
 ## Score System for **DealerRater.com**
 
@@ -134,8 +177,6 @@ Since we are only handling review from DealerRater.com, we did not worry about n
 **NOTE**: All information used into this scoring system was extract from online review pages. After analysing DealerRater's html it was possible to detect how their website is formatted.
 
 
-## How to extract information
-
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/lucasfernand-es/review_scraper. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/lucasfernand-es/review_scraper/blob/master/CODE_OF_CONDUCT.md).
@@ -148,3 +189,9 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the ReviewScraper project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/review_scraper/blob/master/CODE_OF_CONDUCT.md).
+
+
+## TODO
+
+- Host Gem
+- Add a more friendly way to find a dealership in DealerRater.com 

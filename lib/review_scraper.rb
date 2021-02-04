@@ -8,6 +8,8 @@ require 'review_scraper/version'
 require 'review_scraper/dealer_rater/client'
 require 'review_scraper/dealer_rater/review'
 
+require 'review_scraper/dealer_rater/api/kgb_tool'
+
 require 'mechanize'
 require 'sentimental'
 
