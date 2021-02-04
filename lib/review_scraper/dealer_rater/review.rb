@@ -22,8 +22,12 @@ module ReviewScraper
         @score ||= SentimentAnalyser.call(text: content, modifier: rating)
       end
 
+      def author
+        @author = raw_element.at('span').children.text.sub('- ', '')
+      end
+
       def to_s
-        "Content: #{content} -- Rating: #{rating} -- Score: #{score}"
+        "Content: #{content} -- Rating: #{rating} -- Score: #{score} -- Author: #{author}"
       end
 
       private
