@@ -2,7 +2,7 @@
 
 [![Actions Status](https://github.com/lucasfernand-es/Review-Scraper/workflows/build/badge.svg)](https://github.com/lucasfernand-es/Review-Scraper/actions)
 
-This web scraper searches for "good" dealership's reviews on DealerRater.com for the Committee for State Security.
+This web scraper searches for "good" dealership reviews on DealerRater.com for the Committee for State Security.
 
 ## Table of Contents
   - [Scenario](#scenario)
@@ -25,13 +25,13 @@ The KGB has noticed a resurgence of overly excited reviews for a McKaig Chevrole
 
 Your mission, should you choose to accept it, is to write a tool that:
 
-1. scrapes the first five pages of reviews
-2. identifies the top three most “overly positive” endorsements (using criteria of your choosing, documented in the README)
-3. outputs these three reviews to the console, in order of severity
+1. Scrapes the first five pages of reviews
+2. Identifies the top three most “overly positive” endorsements (using criteria of your choosing, documented in the README)
+3. Autputs these three reviews to the console, in order of severity
 
 ### Proposed solution
 
-It was develop an API to help the KGB identify "the top three worst offenders" called `ReviewScraper::DealerRater::Api::KgbTool`. All the agent need to do is run a function `print_top_three_offenders` to print these offenders comments in the console.
+It developed an API to help the KGB identify "the top three worst offenders" called `ReviewScraper::DealerRater::Api::KgbTool`. All the agent needs to do is run a function `print_top_three_offenders` to print these offenders' comments in the console.
 
 ```ruby
 ReviewScraper::DealerRater::Api::KgbTool.print_top_three_offenders
@@ -69,7 +69,7 @@ Once inside the `bin/console` run:
 ReviewScraper::DealerRater::Api::KgbTool.print_top_three_offenders
 ```
 
-**NOTE**: In depth details about this application are described below.
+**NOTE**: In-depth details about this application are described below.
 
 ## Installation
 
@@ -89,7 +89,7 @@ Or install it yourself as:
 
 ## How to Run
 
-There's several ways to run this project:
+There are several ways to run this project:
 
 1. As an installed gem in a project (described above).
 1. Run directly in your console after downloading this project.
@@ -150,13 +150,13 @@ dealer_scraper = ReviewScraper::DealerRater::Client.new(url: dealer_url)
 
 ## Score System for **DealerRater.com**
 
-Reviews content are analysed in  `ReviewScraper::SentimentAnalyser` which uses [Sentimental](https://github.com/7compass/sentimental) to verify how positive a endorsement is.
+Reviews content is analysed in  `ReviewScraper::SentimentAnalyser` which uses [Sentimental](https://github.com/7compass/sentimental) to verify how positive an endorsement is.
 
-We are encapsulating in this service so any other analysis tool can be easily implemented in the future.
+We are encapsulating this service so any other analysis tool can be easily implemented in the future.
 
 `ReviewScraper::SentimentAnalyser` is a service that receives a `text` and a `modifier` and returns a score. For DealerRater:
 - `text`: content of a review.
-- `modifier`: average rating given by a customer.
+- `modifier`: the average rating is given by a customer.
 
 `text` is analyzed by each word and not the sentence. So at this time, complex sentences (e.g. containing sarcasm) might be misinterpreted.
 
@@ -171,10 +171,10 @@ The overall sentiment of a review is given by a set threshold:
 - Neutral scores are <= 0.25 and >= -0.25
 - Negative scores are < -0.25
 
-Since we are only handling review from DealerRater.com, we did not worry about normalizing/standarizing our data.
+Since we are only handling reviews from DealerRater.com, we did not worry about normalizing/standardizing our data.
 
 
-**NOTE**: All information used into this scoring system was extract from online review pages. After analysing DealerRater's html it was possible to detect how their website is formatted.
+**NOTE**: All information used in this scoring system was extracted from online review pages. After analysing DealerRater's html it was possible to detect how their website is formatted.
 
 
 ## Contributing
@@ -189,9 +189,3 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the ReviewScraper project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/review_scraper/blob/master/CODE_OF_CONDUCT.md).
-
-
-## TODO
-
-- Host Gem
-- Add a more friendly way to find a dealership in DealerRater.com 
